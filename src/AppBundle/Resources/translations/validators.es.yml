@@ -1,0 +1,36 @@
+person:
+    age:
+        min:  'Edad mínima: {{ limit }}'
+        max: 'Edad máxima: {{ limit }}'
+        invalid: 'Valor NO válido.' 
+
+    height:
+        min: 'Altura mínima {{ limit }}'
+        max: 'Altura máxima {{ limit }}'
+        invalid: 'Valor NO válido.'
+
+    email:
+        invalid: 'Email NO válido. {{ value }}'
+
+    phone: 
+        invalid: 'Teléfono debe ser entre 9 y 12 dígitos.'
+
+    gender:
+        invalid: 'Género NO válido.'
+
+    descends:
+        min: 'Número mínimo {{ limit }}'
+        max: 'Número máximo {{ limit }}'
+        invalid: 'Valor NO válido.'
+
+    preferred_languaje:
+        invalid: 'Formato de idioma NO correcto'
+
+    URL:
+        invalid: 'WEB NO válida'
+
+    card_number:
+        invalid: 'Tarjeta de pago NO válida'
+
+    iban:
+        invalid: 'IBAN incorrecto.'

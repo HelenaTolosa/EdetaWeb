@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %} 
+
+{% trans_default_domain 'AppBundle' %}
+
+{% block title %} Yacimiento {{ yacimiento.name }} {% endblock %} 
+
+{% block content %}
+<br>
+<br>
+<br>
+
+<h2>Yacimiento {{ yacimiento.id }}</h2>
+
+<table class="table">
+<tbody>
+	<tr><td><strong>{{ 'yacimiento.name' | trans }}</strong></td><td>{{ yacimiento.name }}</td></tr>
+	<tr><td><strong>{{ 'yacimiento.description' | trans }}</strong></td><td>{{ yacimiento.description }}</td></tr>
+	<tr><td><strong>{{ 'yacimiento.municipio' | trans }}</strong></td><td>{{ yacimiento.municipio }}</td></tr>			
+</tbody>
+</table>
+
+	<p><a href="{{ app.request.headers.get('referer') }}"><i class="fa fa-arrow-circle-left fa-2x">&nbsp</i>{{ 'form.back' | trans }}</a></p>
+
+<br><br><br><hr>
+
+{% endblock %}

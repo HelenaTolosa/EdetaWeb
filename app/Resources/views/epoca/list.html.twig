@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% trans_default_domain 'AppBundle' %}
+
+{% block title %} {{'epoca.list.title'| trans }} {%endblock %}
+
+{% block content %}
+<br>
+<br>
+<br>
+<h2>{{'epoca.list.title'| trans }}</h2>
+
+<table class="table table-striped">
+<thead>
+	<tr>
+		<th>{{ 'epoca.id' | trans }}</th>
+		<th>{{ 'epoca.name' | trans }}</th>
+		
+		{% if is_granted('ROLE_APP_ADMIN') %}
+		<th>{{ 'epoca.list.edit' | trans }}</th>
+		<th>{{ 'epoca.list.delete' | trans }}</th>
+		{% endif %}	
+			
+	</tr>
+	</thead>
+	{% for epoca in epocas %}
+	<tbody>
+	<tr>
+		<td>{{ epoca.id }}</td>
+		<td><a href="{{ path('yacimientolistByepoca', {'name' : epoca.name }) }}">			
+			{{ epoca.name }}</a>
+		</td>
+
+		{% if is_granted('ROLE_APP_ADMIN') %}
+		<td><a href="{{ path('epocaedit', {'id' : epoca.id }) }}">
+			<i class="fa fa-pencil-square-o"></i></a></td>
+		<td><a href="{{ path('epocadelete', {'id' : epoca.id }) }}">
+			<i class="fa fa-trash fa-lg"></i></a>
+		</td>
+		{% endif %}		
+	</tr>
+	</tbody>
+	{% endfor %}
+</table>
+
+	<p><a href="{{ app.request.headers.get('referer') }}"><i class="fa fa-arrow-circle-left fa-2x">&nbsp</i>{{ 'form.back' | trans }}</a></p>
+
+<br><br><br><hr>
+
+{% endblock %}

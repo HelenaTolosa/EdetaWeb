@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% trans_default_domain 'AppBundle' %}
+
+{% block title %} {{ 'yacimiento.epocalist.title' | trans }} {% endblock %}
+
+{% block content %}
+<br>
+<br>
+<br>
+
+<h2>{{ 'yacimiento.epocalist.title' | trans }}</h2>
+
+{% for epoca in epocas %}
+<h4>{{ epoca.name }}</h4>
+<table class="table table-striped">
+<thead>
+	<tr>
+		<th>{{ 'yacimiento.id' | trans }}</th>
+		<th>{{ 'yacimiento.name' | trans }}</th>
+		<th>{{ 'yacimiento.description' | trans }}</th>
+		<th>{{ 'yacimiento.municipio' | trans }}</th>
+	</tr>
+	</thead>
+	{% for yacimiento in epoca.yacimientos %}
+	<tbody>
+	<tr>
+		<td><a href="{{ path('yacimientoshow', {'id' : yacimiento.id }) }}">
+			{{ yacimiento.id }}</a>
+		</td>
+		<td>{{ yacimiento.name }}</td>
+		<td>{{ yacimiento.description }}</td>
+		<td>{{ yacimiento.municipio }}</td>
+	</tr>
+	</tbody>
+	{% endfor %}		
+</table>
+{% endfor %}
+
+	<p><a href="{{ app.request.headers.get('referer') }}"><i class="fa fa-arrow-circle-left fa-2x">&nbsp</i>{{ 'form.back' | trans }}</a></p>
+
+<br><br><br><hr>
+
+
+{% endblock %}

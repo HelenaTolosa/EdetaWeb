@@ -1,0 +1,74 @@
+yacimiento:
+    id: 'Id'
+    name: 'Nombre'
+    description: 'Descripción'
+    municipio: 'Municipio'
+    epoca: 'Época'
+
+    list:
+        title: 'Listado de yacimientos'
+        header: 'Listado de yacimientos'
+        edit: 'Editar'
+        delete: 'Eliminar'
+
+    new: 
+        title: 'Nuevo yacimiento'        
+
+    show: 
+        title: 'Detalle yacimiento:  %yacimientoname%'
+        header: 'Yacimiento: %yacimientoname%'
+
+    flash: 
+        municipio: 'El municipio introducido es erroneo'    
+
+    epocalist:
+        title: 'Listado de yacimientos por épocas'  
+
+
+epoca:
+    id: 'Id'
+    name: 'Nombre'
+    list:
+        title: 'Listado de épocas'
+        header: 'Listado de épocas'
+        edit: 'Editar'
+        delete: 'Eliminar'
+
+    new:
+        title: 'Nueva Época'
+
+    show:
+        title: 'Detalle de Época: %epocaname%'       
+
+menu:
+    home: 'Inicio'
+
+    yacimiento:
+        item: 'Yacimientos'
+        new: 'Nuevo'
+        new_static: 'Nuevo estática'
+        new_parametrized: 'Nuevo parametrizado'
+        list: 'Listado'
+        epocalist: 'Listado Yacimientos por épocas'
+
+    epoca:
+        item: 'Épocas'
+        new: 'Nueva'
+        new_static: 'Nueva estática'
+        list: 'Listado'
+    user:
+        register: 'Registrarse'
+        login: 'Acceder'
+        logout: 'Salir'
+        password_change: 'Cambio contraseña'
+        edit: 'Editar'
+
+form:
+   save: 'Guardar'
+   save_add: 'Guardar y continuar'
+   back: 'Atras' 
+
+home:
+  title: 'Práctica Elena Ruiz Conde'
+  subtitle: 'Curso 2015 / 2016'
+  
