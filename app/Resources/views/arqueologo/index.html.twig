@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>Arqueólogos list</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Numcolegiado</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for arqueologo in arqueologos %}
+            <tr>
+                <td><a href="{{ path('arqueologo_show', { 'id': arqueologo.id }) }}">{{ arqueologo.id }}</a></td>
+                <td>{{ arqueologo.nombre }}</td>
+                <td>{{ arqueologo.apellidos }}</td>
+                <td>{{ arqueologo.numColegiado }}</td>
+                <td>{{ arqueologo.email }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('arqueologo_show', { 'id': arqueologo.id }) }}">Ver</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('arqueologo_edit', { 'id': arqueologo.id }) }}">Editar</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('arqueologo_new') }}">Create a new arqueologo</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -2,166 +2,123 @@
 
 namespace AppBundle\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use AppBundle\Entity\Yacimiento;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use AppBundle\Entity\Yacimiento;
-use AppBundle\Entity\Epoca;
 
+/**
+ * Yacimiento controller.
+ *
+ */
+class YacimientoController extends Controller
+{
+    /**
+     * Lists all yacimiento entities.
+     *
+     */
+    public function indexAction()
+    {
+        $em = $this->getDoctrine()->getManager();
 
+        $yacimientos = $em->getRepository('AppBundle:Yacimiento')->findAll();
 
-class YacimientoController extends Controller {
+        return $this->render('yacimiento/index.html.twig', array(
+            'yacimientos' => $yacimientos,
+        ));
+    }
 
-	public function createStaticAction() {
-		
-		$em = $this->getDoctrine()->getManager();
-	
-		$epocas= $this->getDoctrine ()->getRepository('AppBundle:Epoca')->findAll();
-		
-		$epoca = new Epoca();
-		$epoca->setName(sprintf("Epoca%d", rand(1,10))); // Evito la epoca cero
-	
-		$yacimiento= new Yacimiento();
-		$yacimiento->setName('Nombre Yacimiento');
-		$yacimiento->setMunicipio('Valencia');
-		$yacimiento->setDescription('Sit tibi terra levis');
-		// relacionamos con epoca
-		$yacimiento->setEpoca($epoca);
-	
-		$em->persist($epoca);
-		$em->persist($yacimiento);
-		$em->flush();
-	
-		return $this->render('main/dispatch.html.twig', array ('dispatch'=> sprintf("El yacimiento %s (%d) ha sido creado con éxito.", $yacimiento->getName(), $yacimiento->getId())));
-		
-	}
-	public function showAction($id) {
-		
-		$yacimiento= $this->getDoctrine()->getRepository('AppBundle:Yacimiento')->find($id);
-	
-		if (!$yacimiento) {
-			return $this->render('main/message.html.twig', array('message'=>sprintf("El yacimiento id: %d, no existe", $id)));
-		}
-	
-		return $this->render('yacimiento/show.html.twig', array('yacimiento'=>$yacimiento));
-		
-	}
+    /**
+     * Creates a new yacimiento entity.
+     *
+     */
+    public function newAction(Request $request)
+    {
+        $yacimiento = new Yacimiento();
+        $form = $this->createForm('AppBundle\Form\YacimientoType', $yacimiento);
+        $form->handleRequest($request);
 
-	public function listAction() {
-		
-		$yacimientos= $this->getDoctrine()->getRepository('AppBundle:Yacimiento')->findBy(array(),array('id'=>'ASC'));
-	
-		return $this->render('yacimiento/list.html.twig', array('yacimientos'=>$yacimientos));
-		
-	}
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($yacimiento);
+            $em->flush($yacimiento);
 
-	public function createParamAction($name, $municipio) {
-		
-		$em= $this->getDoctrine()->getManager();
-	
-		$epocas= $this->getDoctrine()->getRepository ('AppBundle:Epoca')->findAll();
-	
-		$epoca= new Epoca();
-		$epoca->setName(sprintf("Epoca%d", rand(1,10))); // Evito la epoca cero
-		
-		$yacimiento= new Yacimiento();
-		$yacimiento->setName($name);
-		$yacimiento->setMunicipio($municipio);
-		$yacimiento->setDescription(sprintf('Descripción de %s', $name));
-		// La sigiente línea relaciona la epoca
-		$yacimiento->setEpoca($epoca);
-	
-		$em->persist($epoca);
-		$em->persist($yacimiento);	
-		$em->flush();
-	
-		return $this->render('main/dispatch.html.twig', array('dispatch' => sprintf ("El Yacimiento %s (%d) ha sido creado con éxito.", $yacimiento->getName(), $yacimiento->getId())));
-	}
-	public function listByEpocaAction($name) {
-		
-		$epocas= $this->getDoctrine()->getRepository('AppBundle:Epoca')->findByName($name);
-	
-		return $this->render('yacimiento/listbyepoca.html.twig', array('epocas'=>$epocas));
-	
-	}	
-	public function listAllByEpocaAction() {
-	
-		$epocas= $this->getDoctrine()->getRepository('AppBundle:Epoca')->findAll();
-	
-		return $this->render('yacimiento/listbyepoca.html.twig', array('epocas'=>$epocas));
-	
-	}
+            return $this->redirectToRoute('yacimiento_show', array('id' => $yacimiento->getId()));
+        }
 
-	public function deleteAction($id) {
-		
-		$yacimiento= $this->getDoctrine()->getRepository('AppBundle:Yacimiento')->find($id);
-		
-		$em= $this->getDoctrine()->getManager();
-		
-		$em->remove($yacimiento);
-		$em->flush();
-		
-		return $this->redirectToRoute ('yacimientolist');		
-		
-	}	
+        return $this->render('yacimiento/new.html.twig', array(
+            'yacimiento' => $yacimiento,
+            'form' => $form->createView(),
+        ));
+    }
 
-	public function newYacimientoAction(Request $request) {
-	
-		$em= $this->getDoctrine()->getManager ();
-	
-		$yacimiento= new Yacimiento();
-	
-		$form= $this->createFormBuilder($yacimiento, ['translation_domain'=> 'AppBundle'])
-		
-				->add('name', 'text', array('label'=> 'yacimiento.name'))
-				->add('description', 'text', array('label'=> 'yacimiento.description', 'required' => false))
-				->add('municipio', 'text', array('label'=> 'yacimiento.municipio'))
-				->add('epoca', 'entity', array('label'=> 'yacimiento.epoca', 'class'=> 'AppBundle:Epoca', 'choice_label'=> 'name' ))
-				->add('save', 'submit', array('label'=> 'form.save'))
-				->add('saveAndAdd', 'submit', array('label'=> 'form.save_add'))
-				->getForm();
-	
-					$form->handleRequest($request);
-	
-						if ($form->isValid()) {
-								
-							$em->persist($yacimiento);
-							$em->flush();										
-									
-							return $form->get('saveAndAdd')->isClicked()
-							? $this->redirectToRoute('formyacimientonew',array(),301)
-							: $this->redirectToRoute('yacimientolist',array(),301);
-							}
-	
-						return $this->render('yacimiento/new.html.twig', array('form' => $form->createView()));
-		}
+    /**
+     * Finds and displays a yacimiento entity.
+     *
+     */
+    public function showAction(Yacimiento $yacimiento)
+    {
+        $deleteForm = $this->createDeleteForm($yacimiento);
 
-	public function editYacimientoAction($id, Request $request) {
-		
-		$em= $this->getDoctrine()->getManager ();
-		
-		$yacimiento= $em-> getRepository('AppBundle:Yacimiento')-> find($id);
-		
-		$form= $this->createFormBuilder($yacimiento, ['translation_domain'=> 'AppBundle'])
-		
-		->add('name', 'text', array('label'=> 'yacimiento.name'))
-		->add('description', 'text', array('label'=> 'yacimiento.description', 'required' => false))
-		->add('municipio', 'text', array('label'=> 'yacimiento.municipio', 'invalid_message'=> 'yacimiento.flash.municipio'))
-		->add('epoca', 'entity', array('label'=> 'yacimiento.epoca', 'class'=> 'AppBundle:Epoca', 'choice_label'=> 'name' ))
-		->add('save', 'submit', array('label'=> 'form.save'))			
-		->getForm();
-		
-		$form->handleRequest($request);
-		
-		if ($form->isValid()) {
-		
-			$em->persist($yacimiento);
-			$em->flush();
-					
-		return $this->redirectToRoute('yacimientolist',array(),301);
-		}
-		
-		return $this->render('yacimiento/new.html.twig', array('form' => $form->createView()));
-	}
+        return $this->render('yacimiento/show.html.twig', array(
+            'yacimiento' => $yacimiento,
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
+
+    /**
+     * Displays a form to edit an existing yacimiento entity.
+     *
+     */
+    public function editAction(Request $request, Yacimiento $yacimiento)
+    {
+        $deleteForm = $this->createDeleteForm($yacimiento);
+        $editForm = $this->createForm('AppBundle\Form\YacimientoType', $yacimiento);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('yacimiento_edit', array('id' => $yacimiento->getId()));
+        }
+
+        return $this->render('yacimiento/edit.html.twig', array(
+            'yacimiento' => $yacimiento,
+            'edit_form' => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
+
+    /**
+     * Deletes a yacimiento entity.
+     *
+     */
+    public function deleteAction(Request $request, Yacimiento $yacimiento)
+    {
+        $form = $this->createDeleteForm($yacimiento);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($yacimiento);
+            $em->flush();
+        }
+
+        return $this->redirectToRoute('yacimiento_index');
+    }
+
+    /**
+     * Creates a form to delete a yacimiento entity.
+     *
+     * @param Yacimiento $yacimiento The yacimiento entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createDeleteForm(Yacimiento $yacimiento)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('yacimiento_delete', array('id' => $yacimiento->getId())))
+            ->setMethod('DELETE')
+            ->getForm()
+        ;
+    }
 }
-		

@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <br><br><br>
+        <div align='center'>
+        <h1>Menu provisional: </h1>
+        <h4>Siempre llenar la base de datos en este orden cuando es la primera vez</h4>
+        <br>        
+        <a href="{{ path('fos_user_security_login') }}"><h4>Login</h4></a>   
+        <a href="{{ path('fos_user_registration_register') }}"><h4>Registro</h4></a>
+        <br>
+        <a href="{{ path('epoca_index') }}"><h4>Épocas</h4></a>
+        <a href="{{ path('provincia_index') }}"><h4>Provincias</h4></a>
+        <a href="{{ path('municipio_index') }}"><h4>Municipios</h4></a>
+        <a href="{{ path('arqueologo_index') }}"><h4>Arqueólogos</h4></a>
+        <a href="{{ path('yacimiento_index') }}"><h4>Yacimientos</h4></a>
+    </div>
+{% endblock %}

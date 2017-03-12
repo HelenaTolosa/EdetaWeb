@@ -1,60 +1,24 @@
-{% extends 'base.html.twig' %}
+{% extends "FOSUserBundle::layout.html.twig" %}
 
 {% trans_default_domain 'FOSUserBundle' %}
 
-{% block content %}
-<br><br><br><br><br><br>
+{% block fos_user_content %}
 {% if error %}
-<div class="row">
-   <div class="col-sm-offset-2 col-sm-5 alert alert-warning alert-dismissible" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      {{ error.messageKey|trans(error.messageData, 'security') }}
-  </div>
-</div>
+    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 {% endif %}
 
-
-
-<form action="{{ path("fos_user_security_check") }}" method="post" class="form-horizontal">
+<form action="{{ path("fos_user_security_check") }}" method="post">
     <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-    
-  <div class="form-group">
-      <label for="username" class="col-sm-2 control-label">{{ 'security.login.username'|trans }}</label>
-      <div class="col-sm-3">
-        <input type="text" id="username" name="_username" value="{{ last_username }}" 
-        required="required" class="form-control"/>
-      </div>
-    </div>
-    
-  <div class="form-group">
-      <label for="password" class="col-sm-2 control-label">{{ 'security.login.password'|trans }}</label>
-      <div class="col-sm-3">
-        <input type="password" id="password" name="_password"
-        required="required" class="form-control" />
-      </div>
-    </div>
-    
-    <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
-          <div class="checkbox">
-              <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-          <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
-        </div>
-      </div>
-    </div>
 
-  <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
-        <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}"
-          class="btn btn-default" />
-      </div>
-     </div>
-     
-     <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
-        No existe este usuario, <a href="{{ path('fos_user_registration_register') }}">regístrese</a>       
-      </div>
-     </div>
+    <label for="username">{{ 'security.login.username'|trans }}</label>
+    <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+
+    <label for="password">{{ 'security.login.password'|trans }}</label>
+    <input type="password" id="password" name="_password" required="required" />
+
+    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+    <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+
+    <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
 </form>
-<br><br><br><br><br>
-{% endblock content %}
+{% endblock fos_user_content %}

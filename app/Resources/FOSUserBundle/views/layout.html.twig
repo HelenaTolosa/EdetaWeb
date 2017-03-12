@@ -1,19 +1,15 @@
-
 {% extends 'base.html.twig' %}
 
-{% if form is defined %}
-{% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
-{% endif %}
 
-{% block title %}Control de Entrada{% endblock %}
 
 {% block content %}
-<br><br><br><br><br><br>
+<br><br>
+<h2>Control de entrada</h2>
 <div class="row">
-	<div class='col-sm-5'>
+    <div class='col-sm-5'>
     {% block fos_user_content %}
     {% endblock %}
     </div>
 </div>
-<br><br><br><hr>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 {% endblock %}

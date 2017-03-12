@@ -1,82 +1,19 @@
-homepage:
-    path:     /{_locale}
-    defaults: { _controller: AppBundle:Default:index, _locale: es }
-    requirements:
-        _locale: es|en
-yacimientocreateStatic:
-    path:   /{_locale}/yacimiento/create
-    defaults: { _controller: AppBundle:Yacimiento:createStatic }
-    requirements:
-        _locale: es|en
-yacimientoshow:
-    path:      /{_locale}/yacimiento/show/{id}
-    defaults: { _controller: AppBundle:Yacimiento:show }
-    requirements:
-        _locale: es|en
-yacimientolist:
-    path:      /{_locale}/yacimiento/list/
-    defaults: { _controller: AppBundle:Yacimiento:list }
-    requirements:
-        _locale: es|en
-yacimientocreateParam:
-    path:      /{_locale}/yacimiento/create/{name}/{municipio}
-    defaults: { _controller: AppBundle:Yacimiento:createParam }
-    requirements: 
-        name: "[A-Za-z0-9\s-]+"    
-        municipio: "[A-Za-z0-9\s-]+"
-    requirements:
-        _locale: es|en   
-epocacreate:
-    path:      /{_locale}/epoca/create/{name}
-    defaults: { _controller: AppBundle:Epoca:create }
-    requirements:
-        _locale: es|en
-epocadelete:
-    path:      /{_locale}/epoca/delete/{id}
-    defaults: { _controller: AppBundle:Epoca:delete }
-    requirements: 
-        id: \d+   
-    requirements:
-        _locale: es|en 
-epocalist:
-    path:      /{_locale}/epoca/list/
-    defaults: { _controller: AppBundle:Epoca:list }  
-    requirements:
-        _locale: es|en
-yacimientolistByepoca:
-    path:      /{_locale}/yacimiento/list/epoca/{name}
-    defaults: { _controller: AppBundle:Yacimiento:listByEpoca } 
-    requirements:
-        _locale: es|en    
-yacimientoAllByepoca:
-    path:      /{_locale}/yacimiento/list/epoca/
-    defaults: { _controller: AppBundle:Yacimiento:listAllByEpoca }
-    requirements:
-        _locale: es|en
-yacimientodelete:
-    path:      /{_locale}/yacimiento/delete/{id}
-    defaults: { _controller: AppBundle:yacimiento:delete }
-    requirements: 
-        id: \d+
-    requirements:
-        _locale: es|en
-formyacimientonew:
-    path:      /{_locale}/yacimiento/new
-    defaults: { _controller: AppBundle:Yacimiento:newYacimiento }
-    requirements:
-        _locale: es|en
-formepocanew:
-    path:      /{_locale}/epoca/new/
-    defaults: { _controller: AppBundle:Epoca:newEpoca }
-    requirements:
-        _locale: es|en
-epocaedit:
-    path:     /{_locale}/epoca/edit/{id}
-    defaults: { _controller: AppBundle:Epoca:editEpoca }  
-    requirements:
-        _locale: es|en 
-yacimientoedit:
-    path:     /{_locale}/yacimiento/edit/{id}
-    defaults: { _controller: AppBundle:Yacimiento:editYacimiento }
-    requirements:
-        _locale: es|en
+app_epoca:
+    resource: "@AppBundle/Resources/config/routing/epoca.yml"
+    prefix:   /epoca
+
+app_minicipio:
+    resource: "@AppBundle/Resources/config/routing/Municipio.yml"
+    prefix:   /municipio
+
+app_provincia:
+    resource: "@AppBundle/Resources/config/routing/provincia.yml"
+    prefix:   /provincia
+
+app_arqueologo:
+    resource: "@AppBundle/Resources/config/routing/arqueologo.yml"
+    prefix:   /arqueologo
+
+app_yacimiento:
+    resource: "@AppBundle/Resources/config/routing/yacimiento.yml"
+    prefix:   /yacimiento

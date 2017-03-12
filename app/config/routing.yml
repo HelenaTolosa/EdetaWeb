@@ -1,9 +1,10 @@
 app:
-    resource: "@AppBundle/Controller/"
-    type:     annotation
-final:
-    resource: "@AppBundle/Resources/config/routing.yml"
-    prefix:   /
+    resource: '@AppBundle/Controller/'
+    type: annotation
+
+# app/config/routing.yml
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
-    prefix : /{_locale}/
+
+app_crud_all:
+    resource: "@AppBundle/Resources/config/routing.yml"

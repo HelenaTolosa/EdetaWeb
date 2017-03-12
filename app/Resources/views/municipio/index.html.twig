@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>Municipios list</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nommunicipio</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for municipio in municipios %}
+            <tr>
+                <td><a href="{{ path('municipio_show', { 'id': municipio.id }) }}">{{ municipio.id }}</a></td>
+                <td>{{ municipio.nommunicipio }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('municipio_show', { 'id': municipio.id }) }}">Ver</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('municipio_edit', { 'id': municipio.id }) }}">Editar</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('municipio_new') }}">Crear un nuevo municipio</a>
+        </li>
+    </ul>
+{% endblock %}

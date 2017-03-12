@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>Yacimientos list</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombreyac</th>
+                <th>Expediente</th>
+                <th>Fechaexca</th>
+                <th>Coordenadas</th>
+                <th>Descripcion</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for yacimiento in yacimientos %}
+            <tr>
+                <td><a href="{{ path('yacimiento_show', { 'id': yacimiento.id }) }}">{{ yacimiento.id }}</a></td>
+                <td>{{ yacimiento.nombreYac }}</td>
+                <td>{{ yacimiento.expediente }}</td>
+                <td>{% if yacimiento.fechaExca %}{{ yacimiento.fechaExca|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ yacimiento.coordenadas }}</td>
+                <td>{{ yacimiento.descripcion }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('yacimiento_show', { 'id': yacimiento.id }) }}">Ver</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('yacimiento_edit', { 'id': yacimiento.id }) }}">Editar</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('yacimiento_new') }}">Crear un nuevo yacimiento</a>
+        </li>
+    </ul>
+{% endblock %}

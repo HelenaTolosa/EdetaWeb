@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>Ficha arqueólogo</h1>
+
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ arqueologo.id }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ arqueologo.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Apellidos</th>
+                <td>{{ arqueologo.apellidos }}</td>
+            </tr>
+            <tr>
+                <th>Numcolegiado</th>
+                <td>{{ arqueologo.numColegiado }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ arqueologo.email }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('arqueologo_index') }}">Volver al listado</a>
+        </li>
+        <li>
+            <a href="{{ path('arqueologo_edit', { 'id': arqueologo.id }) }}">Editar</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Borrar">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -1,26 +1,48 @@
-{% extends 'base.html.twig' %} 
-
-{% trans_default_domain 'AppBundle' %}
-
-{% block title %} Yacimiento {{ yacimiento.name }} {% endblock %} 
+{% extends 'base.html.twig' %}
 
 {% block content %}
-<br>
-<br>
-<br>
+    <h1>Yacimiento</h1>
 
-<h2>Yacimiento {{ yacimiento.id }}</h2>
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ yacimiento.id }}</td>
+            </tr>
+            <tr>
+                <th>Nombreyac</th>
+                <td>{{ yacimiento.nombreYac }}</td>
+            </tr>
+            <tr>
+                <th>Expediente</th>
+                <td>{{ yacimiento.expediente }}</td>
+            </tr>
+            <tr>
+                <th>Fechaexca</th>
+                <td>{% if yacimiento.fechaExca %}{{ yacimiento.fechaExca|date('d-m-Y') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Coordenadas</th>
+                <td>{{ yacimiento.coordenadas }}</td>
+            </tr>
+            <tr>
+                <th>Descripcion</th>
+                <td>{{ yacimiento.descripcion }}</td>
+            </tr>
+        </tbody>
+    </table>
 
-<table class="table">
-<tbody>
-	<tr><td><strong>{{ 'yacimiento.name' | trans }}</strong></td><td>{{ yacimiento.name }}</td></tr>
-	<tr><td><strong>{{ 'yacimiento.description' | trans }}</strong></td><td>{{ yacimiento.description }}</td></tr>
-	<tr><td><strong>{{ 'yacimiento.municipio' | trans }}</strong></td><td>{{ yacimiento.municipio }}</td></tr>			
-</tbody>
-</table>
-
-	<p><a href="{{ app.request.headers.get('referer') }}"><i class="fa fa-arrow-circle-left fa-2x">&nbsp</i>{{ 'form.back' | trans }}</a></p>
-
-<br><br><br><hr>
-
+    <ul>
+        <li>
+            <a href="{{ path('yacimiento_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('yacimiento_edit', { 'id': yacimiento.id }) }}">Editar</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Borrar">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
 {% endblock %}

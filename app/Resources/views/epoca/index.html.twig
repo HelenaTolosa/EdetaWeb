@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>Listado de épocas</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for epoca in epocas %}
+            <tr>
+                <td><a href="{{ path('epoca_show', { 'id': epoca.id }) }}">{{ epoca.id }}</a></td>
+                <td>{{ epoca.nombre }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('epoca_show', { 'id': epoca.id }) }}">Ver</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('epoca_edit', { 'id': epoca.id }) }}">Editar</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('epoca_new') }}">Crear una nueva época</a>
+        </li>
+    </ul>
+{% endblock %}

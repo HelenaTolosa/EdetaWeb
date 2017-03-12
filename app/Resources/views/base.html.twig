@@ -1,13 +1,10 @@
-
-{% trans_default_domain 'AppBundle' %}
-
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{% block title %}Benvinguts!{% endblock %}</title>
-        {% block stylesheets %} 
+        <title>{% block title %}EdetaWeb{% endblock %}</title>
+        {% block stylesheets %}
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
 
@@ -17,9 +14,9 @@
         <link href="{{ asset('/css/bootstrap-social.css') }}" rel="stylesheet">
         <link href="{{ asset('/css/mystyles.css') }}" rel="stylesheet"> 
         <link rel="stylesheet" href="{{ asset('/css/mystyles.css') }}" /> 
-        <link rel="stylesheet" href="{{ asset('/css/mycss.css') }}" />        
+        <link rel="stylesheet" href="{{ asset('/css/mycss.css') }}" />
         {% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.jpg') }}" />
+        <link rel="icon" type="image/x-icon" href="{{ asset('edetaweb.ico') }}" />
     </head>
     <body>
     
@@ -41,65 +38,52 @@
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="/"><span class="glyphicon glyphicon-home"
-                        aria-hidden="true"> </span> {{ 'menu.home' | trans }} </a></li>
+                        aria-hidden="true"> </span> {{ 'Inicio' | trans }} </a></li>
                         
                         
                         <!-- Aquí viene resto del menú -->
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"
                             role="button" aria-haspopup="true" aria-expanded="false">
-                            <span><i class="fa fa-font-awesome" aria-hidden="true"></i></span> {{ 'Municipio' | trans }} <span class="caret"></span></a>
+                            <span><i class="fa fa-map-o" aria-hidden="true"></i></i></span> {{ 'Municipio' | trans }} <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="{{ path('formyacimientonew') }}">{{ 'menu.yacimiento.new' | trans }}</a></li>
+                                <li><a href="{{ path('municipio_new') }}">{{ 'Nuevo' | trans }}</a></li>
                                 <li role="separator" class="divider"></li>                                
-                                <li><a href="{{ path('yacimientolist') }}">{{ 'menu.yacimiento.list' | trans }}</a></li>
+                                <li><a href="{{ path('municipio_index') }}">{{ 'Listado' | trans }}</a></li>
                             </ul>
                         </li>
 
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"
                             role="button" aria-haspopup="true" aria-expanded="false">
-                            <span><i class="fa fa-map-marker"></i></span> {{ 'menu.yacimiento.item' | trans }} <span class="caret"></span></a>
+                            <span><i class="fa fa-map-marker"></i></span> {{ 'Yacimiento' | trans }} <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="{{ path('formyacimientonew') }}">{{ 'menu.yacimiento.new' | trans }}</a></li>
+                                <li><a href="{{ path('yacimiento_new') }}">{{ 'Nuevo' | trans }}</a></li>
                                 <li role="separator" class="divider"></li>                                
-                                <li><a href="{{ path('yacimientolist') }}">{{ 'menu.yacimiento.list' | trans }}</a></li>
+                                <li><a href="{{ path('yacimiento_index') }}">{{ 'Listado' | trans }}</a></li>
                             </ul>
                         </li>
 
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                            role="button" aria-haspopup="true" aria-expanded="false">
-                            <span><i class="fa fa-map-marker"></i></span> {{ 'menu.yacimiento.item' | trans }} <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="{{ path('formyacimientonew') }}">{{ 'menu.yacimiento.new' | trans }}</a></li>
-                                <li role="separator" class="divider"></li>                                
-                                <li><a href="{{ path('yacimientolist') }}">{{ 'menu.yacimiento.list' | trans }}</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                            role="button" aria-haspopup="true" aria-expanded="false">
-                            <span><i class="fa fa-hourglass-half"></i></span> {{ 'menu.epoca.item' | trans }} <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="{{ path('formepocanew') }}">{{ 'menu.epoca.new' | trans }}</a></li>                                                          
-                                <li role="separator" class="divider"></li>                                
-                                <li><a href="{{ path('epocalist') }}">{{ 'menu.epoca.list' | trans }}</a></li>
-                                <li><a href="{{ path('yacimientoAllByepoca') }}">{{ 'menu.yacimiento.epocalist' | trans }}</a></li>
-                            </ul>
-                        </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"
                             role="button" aria-haspopup="true" aria-expanded="false">
                             <span><i class="fa fa-user-plus" aria-hidden="true"></i></span> {{ 'Arqueólogo' | trans }} <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="{{ path('formepocanew') }}">{{ 'menu.epoca.new' | trans }}</a></li>                                                          
+                                <li><a href="{{ path('arqueologo_new') }}">{{ 'Nuevo' | trans }}</a></li>
                                 <li role="separator" class="divider"></li>                                
-                                <li><a href="{{ path('epocalist') }}">{{ 'menu.epoca.list' | trans }}</a></li>
-                                
+                                <li><a href="{{ path('arqueologo_index') }}">{{ 'Listado' | trans }}</a></li>
                             </ul>
-                        </li>   
-
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                            role="button" aria-haspopup="true" aria-expanded="false">
+                            <span><i class="fa fa-hourglass-half"></i></span> {{ 'Época' | trans }} <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ path('epoca_new') }}">{{ 'Nueva' | trans }}</a></li>                                                          
+                                <li role="separator" class="divider"></li>                                
+                                <li><a href="{{ path('epoca_index') }}">{{ 'Listado' | trans }}</a></li>                                
+                            </ul>
+                        </li>
                     </ul>
  
                     <ul class="nav navbar-nav navbar-right">
@@ -122,10 +106,10 @@
                                                                     
                     {% else %}
                      <li><a data-toggle="modal" data-target="#loginModal">
-                        <span class="glyphicon glyphicon-log-in"></span> {{ 'menu.user.login' | trans }} </a>
+                        <span class="glyphicon glyphicon-log-in"></span> {{ 'Acceso' | trans }} </a>
                     </li>
                     <li>
-                        <a href="{{ path('fos_user_registration_register') }}"><span class="glyphicon glyphicon-plus"></span> {{ 'menu.user.register' | trans }} </a>
+                        <a href="{{ path('fos_user_registration_register') }}"><span class="glyphicon glyphicon-plus"></span> {{ 'Registro' | trans }} </a>
                     </li>
                     {% endif %}
                     
@@ -172,10 +156,11 @@
 {% endblock %}
 
     <div class="container">                 
+        <br><br><br>
             {% block content %}        
             {% endblock %}        
     </div>
-    
+<br><br><br><br><br><br><br><br> 
     <div class="row-footer">
         <div class="container">
             <div class="row">

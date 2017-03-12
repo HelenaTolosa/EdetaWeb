@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>Crear provincia</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="submit" value="Crear" />
+    {{ form_end(form) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('provincia_index') }}">Volver al listado</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -2,39 +2,42 @@
 
 namespace AppBundle\Entity;
 
-use AppBundle\Entity\Epoca;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
+use AppBundle\Entity\Municipio;
+use AppBundle\Entity\Arqueologo;
+use AppBundle\Entity\Epoca;
 
 /**
- * @ORM\Entity
+ * Yacimiento
+ *
  * @ORM\Table(name="yacimiento")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\YacimientoRepository")
  */
 class Yacimiento
 {
     /**
-     * @ORM\Column(type="integer")
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    private $id;
 
     /**
-     * @ORM\Column(type="string", length=100)
-     * @Assert\NotBlank(message="Rellenar el campo nombre")
+     * @var string
+     *
+     * @ORM\Column(name="nombreYac", type="string", length=255)
      */
-    protected $name;
+    private $nombreYac;
 
     /**
-     * @ORM\Column(type="string", length=100)     
+     * @var string
+     *
+     * @ORM\Column(name="expediente", type="string", length=255, unique=true)
      */
-    protected $municipio;
+    private $expediente;
 
-    /**
-     * @ORM\Column(type="text" , nullable=true)
-     */
-    protected $description;
-    
     /**
      * @ORM\ManyToOne(targetEntity="Epoca", inversedBy="yacimientos")
      * @ORM\JoinColumn(name="epoca_id", referencedColumnName="id", nullable=false)
@@ -42,9 +45,43 @@ class Yacimiento
     protected $epoca;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fechaExca", type="date")
+     */
+    private $fechaExca;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="coordenadas", type="string", length=255, unique=true)
+     */
+    private $coordenadas;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="descripcion", type="text")
+     */
+    private $descripcion;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Municipio", inversedBy="yacimientos")
+     * @ORM\JoinColumn(name="municipio_id", referencedColumnName="id", nullable=false)
+     */
+    protected $municipio;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Arqueologo", inversedBy="yacimientos")
+     * @ORM\JoinColumn(name="arqueologo_id", referencedColumnName="id", nullable=false)
+     */
+    protected $arqueologo;
+
+
+    /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -52,85 +89,127 @@ class Yacimiento
     }
 
     /**
-     * Set name
+     * Set nombreYac
      *
-     * @param string $name
-     *
+     * @param string $nombreYac
      * @return Yacimiento
      */
-    public function setName($name)
+    public function setNombreYac($nombreYac)
     {
-        $this->name = $name;
+        $this->nombreYac = $nombreYac;
 
         return $this;
     }
 
     /**
-     * Get name
+     * Get nombreYac
      *
-     * @return string
+     * @return string 
      */
-    public function getName()
+    public function getNombreYac()
     {
-        return $this->name;
+        return $this->nombreYac;
     }
 
     /**
-     * Set municipio
+     * Set expediente
      *
-     * @param string $municipio
-     *
+     * @param string $expediente
      * @return Yacimiento
      */
-    public function setMunicipio($municipio)
+    public function setExpediente($expediente)
     {
-        $this->municipio = $municipio;
+        $this->expediente = $expediente;
 
         return $this;
     }
 
     /**
-     * Get municipio
+     * Get expediente
      *
-     * @return string
+     * @return string 
      */
-    public function getMunicipio()
+    public function getExpediente()
     {
-        return $this->municipio;
+        return $this->expediente;
     }
 
     /**
-     * Set description
+     * Set fechaExca
      *
-     * @param string $description
-     *
+     * @param \DateTime $fechaExca
      * @return Yacimiento
      */
-    public function setDescription($description)
+    public function setFechaExca($fechaExca)
     {
-        $this->description = $description;
+        $this->fechaExca = $fechaExca;
 
         return $this;
     }
 
     /**
-     * Get description
+     * Get fechaExca
      *
-     * @return string
+     * @return \DateTime 
      */
-    public function getDescription()
+    public function getFechaExca()
     {
-        return $this->description;
+        return $this->fechaExca;
+    }
+
+    /**
+     * Set coordenadas
+     *
+     * @param string $coordenadas
+     * @return Yacimiento
+     */
+    public function setCoordenadas($coordenadas)
+    {
+        $this->coordenadas = $coordenadas;
+
+        return $this;
+    }
+
+    /**
+     * Get coordenadas
+     *
+     * @return string 
+     */
+    public function getCoordenadas()
+    {
+        return $this->coordenadas;
+    }
+
+    /**
+     * Set descripcion
+     *
+     * @param string $descripcion
+     * @return Yacimiento
+     */
+    public function setDescripcion($descripcion)
+    {
+        $this->descripcion = $descripcion;
+
+        return $this;
+    }
+
+    /**
+     * Get descripcion
+     *
+     * @return string 
+     */
+    public function getDescripcion()
+    {
+        return $this->descripcion;
     }
 
     /**
      * Set epoca
      *
-     * @param Epoca $epoca
-     *
+     * @param \AppBundle\Entity\Epoca $epoca
      * @return Yacimiento
      */
-    public function setEpoca(Epoca $epoca = null)
+    public function setEpoca(\AppBundle\Entity\Epoca $epoca)
     {
         $this->epoca = $epoca;
 
@@ -140,11 +219,56 @@ class Yacimiento
     /**
      * Get epoca
      *
-     * @return \AppBundle\Entity\Epoca
+     * @return \AppBundle\Entity\Epoca 
      */
     public function getEpoca()
     {
         return $this->epoca;
-    }    
+    }
 
+    /**
+     * Set municipio
+     *
+     * @param \AppBundle\Entity\Municipio $municipio
+     * @return Yacimiento
+     */
+    public function setMunicipio(\AppBundle\Entity\Municipio $municipio)
+    {
+        $this->municipio = $municipio;
+
+        return $this;
+    }
+
+    /**
+     * Get municipio
+     *
+     * @return \AppBundle\Entity\Municipio 
+     */
+    public function getMunicipio()
+    {
+        return $this->municipio;
+    }
+
+    /**
+     * Set arqueologo
+     *
+     * @param \AppBundle\Entity\Arqueologo $arqueologo
+     * @return Yacimiento
+     */
+    public function setArqueologo(\AppBundle\Entity\Arqueologo $arqueologo)
+    {
+        $this->arqueologo = $arqueologo;
+
+        return $this;
+    }
+
+    /**
+     * Get arqueologo
+     *
+     * @return \AppBundle\Entity\Arqueologo 
+     */
+    public function getArqueologo()
+    {
+        return $this->arqueologo;
+    }
 }

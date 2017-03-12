@@ -4,19 +4,17 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Validator\Constraints as Assert;
-
 
 /**
  * Epoca
  *
- * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Table(name="epoca")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\EpocaRepository")
  */
 class Epoca
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -27,26 +25,24 @@ class Epoca
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
-     * @Assert\NotBlank(message="Rellenar el campo nombre")
+     * @ORM\Column(name="nombre", type="string", length=255, unique=true)
      */
-    private $name;
-    
+    private $nombre;
+
     /**
      * @ORM\OneToMany(targetEntity="Yacimiento", mappedBy="epoca", cascade={"persist", "remove"})
      */
     protected $yacimientos;
-    
-    public function __construct()
-    {
-    	$this->yacimeintos = new ArrayCollection();
-    }
 
+    public function __toString() {
+
+        return $this->nombre;
+    }
 
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -54,61 +50,65 @@ class Epoca
     }
 
     /**
-     * Set name
+     * Set nombre
      *
-     * @param string $name
-     *
+     * @param string $nombre
      * @return Epoca
      */
-    public function setName($name)
+    public function setNombre($nombre)
     {
-        $this->name = $name;
+        $this->nombre = $nombre;
 
         return $this;
     }
 
     /**
-     * Get name
+     * Get nombre
      *
-     * @return string
+     * @return string 
      */
-    public function getName()
+    public function getNombre()
     {
-        return $this->name;
+        return $this->nombre;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->yacimientos = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
-     * Add yacimiento
+     * Add yacimientos
      *
-     * @param \AppBundle\Entity\Yacimiento $yacimiento
-     *
+     * @param \AppBundle\Entity\Yacimiento $yacimientos
      * @return Epoca
      */
-    public function addYacimiento(\AppBundle\Entity\Yacimiento $yacimiento)
+    public function addYacimiento(\AppBundle\Entity\Yacimiento $yacimientos)
     {
-        $this->yacimientos[] = $yacimiento;
+        $this->yacimientos[] = $yacimientos;
 
         return $this;
     }
 
     /**
-     * Remove yacimiento
+     * Remove yacimientos
      *
-     * @param \AppBundle\Entity\Yacimiento $yacimiento
+     * @param \AppBundle\Entity\Yacimiento $yacimientos
      */
-    public function removeYacimiento(\AppBundle\Entity\Yacimiento $yacimiento)
+    public function removeYacimiento(\AppBundle\Entity\Yacimiento $yacimientos)
     {
-        $this->yacimientos->removeElement($yacimiento);
+        $this->yacimientos->removeElement($yacimientos);
     }
 
     /**
      * Get yacimientos
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getYacimientos()
     {
         return $this->yacimientos;
-    }    
-
+    }
 }
