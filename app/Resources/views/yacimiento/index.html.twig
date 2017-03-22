@@ -1,18 +1,21 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    <h1>Yacimientos list</h1>
+    <h1>Listado de Yacimientos</h1>
 
     <table class="table table-striped">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Nombreyac</th>
+                <th>Nombre</th>
                 <th>Expediente</th>
-                <th>Fechaexca</th>
+                <th>Municipio</th>
+                <th>Fecha fin excavación</th>
                 <th>Coordenadas</th>
-                <th>Descripcion</th>
-                <th>Actions</th>
+                <th>Arqueólogo</th>
+                <th>Época</th>
+                <th>Descripción</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -21,8 +24,11 @@
                 <td><a href="{{ path('yacimiento_show', { 'id': yacimiento.id }) }}">{{ yacimiento.id }}</a></td>
                 <td>{{ yacimiento.nombreYac }}</td>
                 <td>{{ yacimiento.expediente }}</td>
+                <td>{{ yacimiento.municipio}}</td>
                 <td>{% if yacimiento.fechaExca %}{{ yacimiento.fechaExca|date('Y-m-d') }}{% endif %}</td>
                 <td>{{ yacimiento.coordenadas }}</td>
+                <td>{{ yacimiento.arqueologo }}</td>
+                <td>{{ yacimiento.epoca }}</td>
                 <td>{{ yacimiento.descripcion }}</td>
                 <td>
                     <ul>

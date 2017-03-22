@@ -3,16 +3,28 @@
 {% block content %}
 <br><br>
     <h1>Crear yacimiento</h1>
-
+    <div class="row">
+        <div class='col-sm-7'>
     {{ form_start(form) }}
+    <h5><b>Nombre Yacimiento: </b></h5>{{ form_widget(form.nombreYac) }}
+    <h5><b>Expediente: </b></h5>{{ form_widget(form.expediente) }}
+    <h5><b>Municipio: </b></h5>{{ form_widget(form.municipio) }}
+    <h5><b>Fecha fin excavación: </b></h5>{{ form_widget(form.fechaExca) }}
+    <h5><b>Coordenadas: </b></h5>{{ form_widget(form.coordenadas) }}
+    <h5><b>Arqueólogo responsable: </b></h5>{{ form_widget(form.arqueologo) }}
+    <h5><b>Época Histórica: </b></h5>{{ form_widget(form.epoca) }}
+    <h5><b>Descripción del Yacimiento: </b></h5>{{ form_widget(form.descripcion) }}
+    <br>
         {{ form_widget(form) }}
         <input type="submit" value="Crear" />
     {{ form_end(form) }}
-
+    <br>
     <ul>
         <li>
             <a href="{{ path('yacimiento_index') }}">Volver al listado</a>
         </li>
     </ul>
     <br><br><br><br><br><br>
+        </div>
+    </div>
 {% endblock %}

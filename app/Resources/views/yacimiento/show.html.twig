@@ -10,7 +10,7 @@
                 <td>{{ yacimiento.id }}</td>
             </tr>
             <tr>
-                <th>Nombreyac</th>
+                <th>Nombre</th>
                 <td>{{ yacimiento.nombreYac }}</td>
             </tr>
             <tr>
@@ -18,7 +18,7 @@
                 <td>{{ yacimiento.expediente }}</td>
             </tr>
             <tr>
-                <th>Fechaexca</th>
+                <th>Fecha fin excavación</th>
                 <td>{% if yacimiento.fechaExca %}{{ yacimiento.fechaExca|date('d-m-Y') }}{% endif %}</td>
             </tr>
             <tr>
@@ -34,7 +34,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('yacimiento_index') }}">Back to the list</a>
+            <a href="{{ path('yacimiento_index') }}">Listado de yacimientos
         </li>
         <li>
             <a href="{{ path('yacimiento_edit', { 'id': yacimiento.id }) }}">Editar</a>

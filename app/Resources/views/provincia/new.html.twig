@@ -2,7 +2,8 @@
 
 {% block content %}
     <h1>Crear provincia</h1>
-
+    <div class="row">
+        <div class='col-sm-7'>
     {{ form_start(form) }}
         {{ form_widget(form) }}
         <input type="submit" value="Crear" />
@@ -13,4 +14,6 @@
             <a href="{{ path('provincia_index') }}">Volver al listado</a>
         </li>
     </ul>
+        </div>
+    </div>
 {% endblock %}

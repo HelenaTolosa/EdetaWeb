@@ -1,13 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    <h1>Municipios list</h1>
+    <h1>Listado de Municipios</h1>
 
     <table class="table table-striped">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Nommunicipio</th>
+                <th>Municipio</th>
+                <th>Provincia</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -16,6 +17,7 @@
             <tr>
                 <td><a href="{{ path('municipio_show', { 'id': municipio.id }) }}">{{ municipio.id }}</a></td>
                 <td>{{ municipio.nommunicipio }}</td>
+                <td>{{ municipio.provincia }}</td>
                 <td>
                     <ul>
                         <li>

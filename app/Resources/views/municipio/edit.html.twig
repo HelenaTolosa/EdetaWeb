@@ -2,12 +2,16 @@
 
 {% block content %}
     <h1>Editar municipio</h1>
-
+    <div class="row">
+        <div class='col-sm-7'> 
     {{ form_start(edit_form) }}
+    <h5><b>Nombre Municipio: </b></h5>{{ form_widget(edit_form.nommunicipio) }}
+    <h5><b>Provincia : </b></h5>{{ form_widget(edit_form.provincia) }}
         {{ form_widget(edit_form) }}
+        <br>
         <input type="submit" value="Editar" />
     {{ form_end(edit_form) }}
-
+    <br>
     <ul>
         <li>
             <a href="{{ path('municipio_index') }}">Volver al listado</a>
@@ -18,4 +22,6 @@
             {{ form_end(delete_form) }}
         </li>
     </ul>
+        </div>
+    </div>
 {% endblock %}

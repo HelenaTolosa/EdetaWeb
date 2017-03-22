@@ -5,6 +5,9 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ProvinciaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+
 
 class MunicipioType extends AbstractType
 {
@@ -13,7 +16,7 @@ class MunicipioType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nommunicipio')->add('provincia');
+       $builder->add('nommunicipio')->add('provincia');
     }
     
     /**

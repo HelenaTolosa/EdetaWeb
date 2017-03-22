@@ -2,8 +2,9 @@
 
 {% block content %}
 <br><br>
-    <h1>Nuevo arqueólogo</h1>
-
+    <h1>Nuevo Arqueólogo</h1>
+    <div class="row">
+        <div class='col-sm-7'>
     {{ form_start(form) }}
         {{ form_widget(form) }}
         <input type="submit" value="Crear" />
@@ -15,4 +16,6 @@
         </li>
     </ul>
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        </div>
+    </div>
 {% endblock %}

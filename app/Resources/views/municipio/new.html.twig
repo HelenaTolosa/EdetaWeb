@@ -3,11 +3,17 @@
 {% block content %}
     <br><br>
     <h1>Alta de municipios</h1>
+    <div class="row">
+        <div class='col-sm-7'>
 
     {{ form_start(form) }}
+    <h5><b>Nombre Municipio: </b></h5>{{ form_widget(form.nommunicipio) }}
+    <h5><b>Provincia : </b></h5>{{ form_widget(form.provincia) }}
         {{ form_widget(form) }}
+        <br>
         <input type="submit" value="Crear" />
     {{ form_end(form) }}
+    <br>
 
     <ul>
         <li>
@@ -15,4 +21,6 @@
         </li>
     </ul>
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        </div>
+    </div>
 {% endblock %}

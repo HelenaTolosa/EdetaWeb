@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    <h1>Arqueólogos list</h1>
+    <h1>Listado de Arqueólogos colegiados</h1>
 
     <table class="table table-striped">
         <thead>
@@ -9,9 +9,9 @@
                 <th>Id</th>
                 <th>Nombre</th>
                 <th>Apellidos</th>
-                <th>Numcolegiado</th>
+                <th>Num. de Colegiado</th>
                 <th>Email</th>
-                <th>Actions</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -39,7 +39,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('arqueologo_new') }}">Create a new arqueologo</a>
+            <a href="{{ path('arqueologo_new') }}">Nuevo arqueólogo</a>
         </li>
     </ul>
 {% endblock %}

@@ -1,7 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    <h1>Edición ficha arqueólogo</h1>
+    <h1>Edición datos arqueólogo</h1>
+    <div class="row">
+        <div class='col-sm-7'>
 
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
@@ -10,12 +12,14 @@
 
     <ul>
         <li>
-            <a href="{{ path('arqueologo_index') }}">Vollver al listado</a>
+            <a href="{{ path('arqueologo_index') }}"> Volver al listado </a>
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Borrar">
+                <input type="submit" value=" Borrar ">
             {{ form_end(delete_form) }}
         </li>
     </ul>
+        </div>
+    </div>
 {% endblock %}

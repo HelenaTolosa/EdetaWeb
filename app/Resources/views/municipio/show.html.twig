@@ -10,8 +10,12 @@
                 <td>{{ municipio.id }}</td>
             </tr>
             <tr>
-                <th>Nommunicipio</th>
+                <th>Municipio</th>
                 <td>{{ municipio.nommunicipio }}</td>
+            </tr>
+            <tr>
+                <th>Provincia</th>
+                <td>{{ municipio.provincia }}</td>
             </tr>
         </tbody>
     </table>
@@ -22,11 +26,13 @@
         </li>
         <li>
             <a href="{{ path('municipio_edit', { 'id': municipio.id }) }}">Editar</a>
+
         </li>
         <li>
             {{ form_start(delete_form) }}
                 <input type="submit" value="Borrar">
             {{ form_end(delete_form) }}
         </li>
+        
     </ul>
 {% endblock %}

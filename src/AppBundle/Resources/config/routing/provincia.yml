@@ -4,21 +4,21 @@ provincia_index:
     methods:  GET
 
 provincia_show:
-    path:     /{id}/show
+    path:     /{id}/show/
     defaults: { _controller: "AppBundle:Provincia:show" }
     methods:  GET
 
 provincia_new:
-    path:     /new
+    path:     /new/
     defaults: { _controller: "AppBundle:Provincia:new" }
     methods:  [GET, POST]
 
 provincia_edit:
-    path:     /{id}/edit
+    path:     /{id}/edit/
     defaults: { _controller: "AppBundle:Provincia:edit" }
     methods:  [GET, POST]
 
 provincia_delete:
-    path:     /{id}/delete
+    path:     /{id}/delete/
     defaults: { _controller: "AppBundle:Provincia:delete" }
     methods:  DELETE

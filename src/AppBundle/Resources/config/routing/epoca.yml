@@ -4,21 +4,21 @@ epoca_index:
     methods:  GET
 
 epoca_show:
-    path:     /{id}/show
+    path:     /{id}/show/
     defaults: { _controller: "AppBundle:Epoca:show" }
     methods:  GET
 
 epoca_new:
-    path:     /new
+    path:     /new/
     defaults: { _controller: "AppBundle:Epoca:new" }
     methods:  [GET, POST]
 
 epoca_edit:
-    path:     /{id}/edit
+    path:     /{id}/edit/
     defaults: { _controller: "AppBundle:Epoca:edit" }
     methods:  [GET, POST]
 
 epoca_delete:
-    path:     /{id}/delete
+    path:     /{id}/delete/
     defaults: { _controller: "AppBundle:Epoca:delete" }
     methods:  DELETE

@@ -20,11 +20,93 @@ security:
                 # if you are using Symfony < 2.8, use the following config instead:
                 # csrf_provider: form.csrf_provider
 
-            logout:       true
+            logout:       true                
             anonymous:    true
 
     access_control:
+
+        - { path: ^/municipio/delete/, roles: [ROLE_ADMIN] }
+        - { path: ^/epoca/delete/, roles: [ROLE_ADMIN] }
+        - { path: ^/arqueologo/delete/, roles: [ROLE_ADMIN] }
+        - { path: ^/provincia/delete/, roles: [ROLE_ADMIN] }
+        - { path: ^/yacimiento/delete/, roles: [ROLE_ADMIN] }
+        - { path: ^/admin/, role: ROLE_ADMIN }
+
+        - { path: ^/arqueologo/edit/, roles: [ROLE_ADMIN, ROLE_USER] }
+        - { path: ^/municipio/edit/, roles: [ROLE_ADMIN, ROLE_USER] }
+        - { path: ^/yacimiento/edit/, roles: [ROLE_ADMIN, ROLE_USER] }
+        - { path: ^/epoca/edit/, roles: [ROLE_ADMIN, ROLE_USER] }
+        - { path: ^/epoca/new/, roles: [ROLE_ADMIN, ROLE_USER] }
+        - { path: ^/yacimiento/new/, roles: [ROLE_ADMIN, ROLE_USER] }
+        - { path: ^/municipio/new/, roles: [ROLE_ADMIN, ROLE_USER] }
+        - { path: ^/arqueologo/show/, roles: [ROLE_ADMIN, ROLE_USER] }
+        - { path: ^/arqueologo/, roles: [ROLE_ADMIN, ROLE_USER] }
+        
+        - { path: ^/yacimiento/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/yacimiento/show/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/municipio/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/epoca/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/epoca/show/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+
+        
+       
+        - { path: ^/yacimiento/show, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/municipio/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/epoca/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/epoca/show, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+
+        - { path: ^/municipio/edit/, roles: [ROLE_ADMIN, ROLE_USER] }
+        - { path: ^/municipio/new, roles: [ROLE_ADMIN, ROLE_USER] }
+        - { path: ^/epoca/edit, roles: [ROLE_ADMIN, ROLE_USER] }
+        - { path: ^/epoca/new, roles: [ROLE_ADMIN, ROLE_USER] }
+        - { path: ^/yacimiento/new, roles: [ROLE_ADMIN, ROLE_USER] }
+        - { path: ^/yacimiento/edit, roles: [ROLE_ADMIN, ROLE_USER] }
+        - { path: ^/arqueologo/show, roles: [ROLE_ADMIN, ROLE_USER] }
+        - { path: ^/arqueologo/, roles: [ROLE_ADMIN, ROLE_USER] }
+        - { path: ^/arqueologo/edit, roles: [ROLE_ADMIN, ROLE_USER] }
+        
+
+        - { path: ^/municipio/delete, roles: [ROLE_ADMIN] }
+        - { path: ^/epoca/delete, roles: [ROLE_ADMIN] }
+        - { path: ^/arqueologo/delete, roles: [ROLE_ADMIN] }
+        - { path: ^/provincia/delete, roles: [ROLE_ADMIN] }
+        - { path: ^/yacimiento/delete, roles: [ROLE_ADMIN] }
         - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: ^/yacimiento/delete, roles: [ROLE_ADMIN] }
